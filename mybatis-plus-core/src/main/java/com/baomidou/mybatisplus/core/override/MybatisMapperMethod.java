@@ -51,8 +51,15 @@ public class MybatisMapperMethod {
         this.method = new MapperMethod.MethodSignature(config, mapperInterface, method);
     }
 
+    /**
+     * 执行执行
+     * @param sqlSession
+     * @param args
+     * @return
+     */
     public Object execute(SqlSession sqlSession, Object[] args) {
         Object result;
+        //根据注释的类型，insert/update/delete来判断该如何执行sql
         switch (command.getType()) {
             case INSERT: {
                 Object param = method.convertArgsToSqlCommandParam(args);
